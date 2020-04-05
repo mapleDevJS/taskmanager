@@ -1,5 +1,14 @@
+export const renderTasks = (tasksQuantity) => {
+  let markup = ``;
+  for (let i = 0; i < tasksQuantity; i++) {
+    markup += createTaskTemplate();
+  }
+  return markup;
+};
+
 export const createTaskTemplate = () => {
-  return `<article class="card card--black">
+  return `
+  <article class="card card--black">
     <div class="card__form">
       <div class="card__inner">
         <div class="card__control">
@@ -16,14 +25,17 @@ export const createTaskTemplate = () => {
             favorites
           </button>
         </div>
+
         <div class="card__color-bar">
           <svg class="card__color-bar-wave" width="100%" height="10">
             <use xlink:href="#wave"></use>
           </svg>
         </div>
+
         <div class="card__textarea-wrap">
-          <p class="card__text">Example default task with default color.</p>
+          <p class="card__text">Example task with default color.</p>
         </div>
+
         <div class="card__settings">
           <div class="card__details">
             <div class="card__dates">
@@ -38,5 +50,6 @@ export const createTaskTemplate = () => {
         </div>
       </div>
     </div>
-  </article>`;
+  </article>
+  `;
 };
