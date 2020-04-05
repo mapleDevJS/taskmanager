@@ -1,12 +1,8 @@
 import {createSiteMenuTemplate} from "./components/site-menu.js";
 import {createSortingTemplate} from "./components/sorting";
 import {createFilterTemplate} from "./components/filter.js";
-import {createTaskTemplate} from "./components/task.js";
-import {createTaskEditTemplate} from "./components/task-edit.js";
 import {createLoadMoreButtonTemplate} from "./components/load-more-button.js";
 import {createBoardTemplate} from "./components/board.js";
-
-const TASK_COUNT = 3;
 
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
@@ -21,12 +17,4 @@ render(siteMainElement, createBoardTemplate());
 
 const siteBoardElement = siteMainElement.querySelector(`.board`);
 render(siteBoardElement, createSortingTemplate(), `afterbegin`);
-
-const taskListElement = siteMainElement.querySelector(`.board__tasks`);
-render(taskListElement, createTaskEditTemplate());
-
-for (let i = 0; i < TASK_COUNT; i++) {
-  render(taskListElement, createTaskTemplate());
-}
-
 render(siteBoardElement, createLoadMoreButtonTemplate());
