@@ -1,3 +1,5 @@
+export const QUANTITY_TASKS = 8;
+
 export const renderTasks = (tasksQuantity) => {
   let markup = ``;
   for (let i = 0; i < tasksQuantity; i++) {

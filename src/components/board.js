@@ -1,6 +1,5 @@
+import {QUANTITY_TASKS} from "./task.js";
 import {renderTasks} from "./task.js";
-
-const QUANTITY_TASKS = 8;
 
 export const createBoardTemplate = () => {
   return `<section class="board container">
