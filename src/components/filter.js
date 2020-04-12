@@ -1,9 +1,7 @@
 import {tasks} from "../main";
 import {generateFilters} from "../mocks/filter";
 
-const createFilterMarkup = (filter) => {
-  const {name, count, isChecked} = filter;
-
+const createFilterMarkup = ({name, count, isChecked}) => {
   return (
     `<input
       type="radio"
