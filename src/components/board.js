@@ -1,6 +1,6 @@
 import {createSortingTemplate} from "./board-sorting";
 import {createTaskTemplate} from "./task";
-import {renderButtonLoadMore} from "./load-more-button.js";
+import {createLoadMoreButtonTemplate} from "./load-more-button.js";
 import {tasks} from "../main";
 
 export const renderTasks = (taskQuantity) => {
@@ -15,6 +15,6 @@ export const createBoardTemplate = () => {
   return `<section class="board container">
     ${createSortingTemplate()}
     <div class="board__tasks"></div>
-    ${renderButtonLoadMore()}
+    ${createLoadMoreButtonTemplate()}
   </section>`;
 };
