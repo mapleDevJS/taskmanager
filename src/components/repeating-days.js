@@ -1,9 +1,3 @@
-import {DAYS} from "../consts";
-
-
-
-
-
 export const createRepeatingDaysMarkup = (days, repeatingDays) => {
   return days
     .map((day, index) => {
