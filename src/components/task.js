@@ -1,16 +1,7 @@
 import {MONTH_NAMES} from "../consts";
 import {formatTime} from "../utils";
-import {tasks} from "../mocks/tasks";
 
-const renderTasks = (taskQuantity) => {
-  let markup = ``;
-  for (let i = 1; i < taskQuantity; i++) {
-    markup += createTaskTemplate(tasks[i]);
-  }
-  return markup;
-};
-
-const createTaskTemplate = (task) => {
+export const createTaskTemplate = (task) => {
   const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
 
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
@@ -68,5 +59,3 @@ const createTaskTemplate = (task) => {
     </div>
   </article>`;
 };
-
-export {tasks, renderTasks, createTaskTemplate};
