@@ -1,6 +1,6 @@
 import {COLORS, DAYS, MONTH_NAMES} from "../consts";
 import {formatTime} from "../utils";
-import {tasks} from "./tasks";
+import {tasks} from "./task";
 
 const renderTaskEdit = () => {
   return createTaskEditTemplate(tasks[0]);

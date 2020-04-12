@@ -1,5 +1,5 @@
 import {createSortingTemplate} from "./board-sorting";
-import {renderTasks} from "./tasks";
+import {renderTasks} from "./task";
 import {renderTaskEdit} from "./task-edit";
 import {renderButtonLoadMore, showingTasksCount} from "./load-more-button.js";
 
