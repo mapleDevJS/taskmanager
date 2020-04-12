@@ -1,10 +1,5 @@
 import {COLORS, DAYS, MONTH_NAMES} from "../consts";
 import {formatTime} from "../utils";
-import {tasks} from "../mocks/tasks";
-
-const renderTaskEdit = () => {
-  return createTaskEditTemplate(tasks[0]);
-};
 
 const createColorsMarkup = (colors, currentColor) => {
   return colors
@@ -50,7 +45,7 @@ const createRepeatingDaysMarkup = (days, repeatingDays) => {
 };
 
 
-const createTaskEditTemplate = (task) => {
+export const createTaskEditTemplate = (task) => {
   const {description, dueDate, color, repeatingDays} = task;
 
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
@@ -151,5 +146,3 @@ const createTaskEditTemplate = (task) => {
     </article>`
   );
 };
-
-export {renderTaskEdit};
