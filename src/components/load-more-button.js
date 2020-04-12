@@ -2,6 +2,7 @@ import {QuantityTasks} from "../consts";
 import {createTaskTemplate} from "./task";
 import {tasks} from "../mocks/tasks";
 import {render} from "../main";
+import {showingTasksCount} from "../consts";
 
 const renderButtonLoadMore = () => {
   return createLoadMoreButtonTemplate();
@@ -10,8 +11,6 @@ const renderButtonLoadMore = () => {
 const createLoadMoreButtonTemplate = () => {
   return `<button class="load-more" type="button">load more</button>`;
 };
-
-let showingTasksCount = QuantityTasks.ON_START;
 
 const loadMoreClickHandler = () => {
   const taskListElement = document.querySelector(`.board__tasks`);
@@ -31,4 +30,4 @@ const addListeners = () => {
   loadMoreButton.addEventListener(`click`, loadMoreClickHandler);
 };
 
-export {renderButtonLoadMore, showingTasksCount, addListeners};
+export {renderButtonLoadMore, addListeners};
