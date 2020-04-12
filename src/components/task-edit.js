@@ -1,48 +1,7 @@
 import {COLORS, DAYS, MONTH_NAMES} from "../consts";
 import {formatTime} from "../utils";
-
-const createColorsMarkup = (colors, currentColor) => {
-  return colors
-    .map((color, index) => {
-      return (
-        `<input
-          type="radio"
-          id="color-${color}-${index}"
-          class="card__color-input card__color-input--${color} visually-hidden"
-          name="color"
-          value="${color}"
-          ${currentColor === color ? `checked` : ``}
-        />
-        <label
-          for="color-${color}--${index}"
-          class="card__color card__color--${color}"
-          >${color}</label
-        >`
-      );
-    })
-    .join(`\n`);
-};
-
-const createRepeatingDaysMarkup = (days, repeatingDays) => {
-  return days
-    .map((day, index) => {
-      const isChecked = repeatingDays[day];
-      return (
-        `<input
-          class="visually-hidden card__repeat-day-input"
-          type="checkbox"
-          id="repeat-${day}-${index}"
-          name="repeat"
-          value="${day}"
-          ${isChecked ? `checked` : ``}
-        />
-        <label class="card__repeat-day" for="repeat-${day}-${index}"
-          >${day}</label
-        >`
-      );
-    })
-    .join(`\n`);
-};
+import {createColorsMarkup} from "./color";
+import {createRepeatingDaysMarkup} from "./repeating-days";
 
 const toggleYesNo = (element) => {
   return element ? `yes` : `no`;
