@@ -60,8 +60,9 @@ export const createFilterMarkup = ({name, count, isChecked}) => {
   );
 };
 
+const filters = generateFilters(tasks);
+
 export const createFilterTemplate = () => {
-  const filters = generateFilters(tasks);
   const filtersMarkup = filters.map(createFilterMarkup).join(`\n`);
 
   return `<section class="main__filter filter container">
