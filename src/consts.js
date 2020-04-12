@@ -1,7 +1,7 @@
 export const QuantityTasks = {
-  TOTAL: 15,
+  TOTAL: 20,
   ON_START: 8,
-  TASKS_BY_BUTTON: 8
+  BY_BUTTON: 8
 };
 
 export const MONTH_NAMES = [
