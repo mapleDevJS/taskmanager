@@ -44,10 +44,27 @@ const createRepeatingDaysMarkup = (days, repeatingDays) => {
     .join(`\n`);
 };
 
+const toggleYesNo = (element) => {
+  return element ? `yes` : `no`;
+};
 
-export const createTaskEditTemplate = (task) => {
-  const {description, dueDate, color, repeatingDays} = task;
+const showDeadline = (isDateShowing, date, time) => {
+  return isDateShowing ?
+    `<fieldset class="card__date-deadline">
+                  <label class="card__input-deadline-wrap">
+                    <input
+                      class="card__date"
+                      type="text"
+                      placeholder=""
+                      name="date"
+                      value="${date} ${time}"
+                    />
+                  </label>
+                </fieldset>`
+    : ``;
+};
 
+export const createTaskEditTemplate = ({description, dueDate, color, repeatingDays}) => {
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isDateShowing = !!dueDate;
 
@@ -60,30 +77,6 @@ export const createTaskEditTemplate = (task) => {
 
   const colorsMarkup = createColorsMarkup(COLORS, color);
   const repeatingDaysMarkup = createRepeatingDaysMarkup(DAYS, repeatingDays);
-
-  const toggleShowDate = () => {
-    return isDateShowing ? `yes` : `no`;
-  };
-
-  const showDate = () => {
-    return isDateShowing ?
-      `<fieldset class="card__date-deadline">
-                    <label class="card__input-deadline-wrap">
-                      <input
-                        class="card__date"
-                        type="text"
-                        placeholder=""
-                        name="date"
-                        value="${date} ${time}"
-                      />
-                    </label>
-                  </fieldset>`
-      : ``;
-  };
-
-  const toggleRepeatingTask = () => {
-    return isRepeatingTask ? `yes` : `no`;
-  };
 
   const getRepeatingTaskMarkup = () => {
     return isRepeatingTask ?
@@ -119,11 +112,11 @@ export const createTaskEditTemplate = (task) => {
             <div class="card__details">
               <div class="card__dates">
                 <button class="card__date-deadline-toggle" type="button">
-                  date: <span class="card__date-status">${toggleShowDate()}</span>
+                  date: <span class="card__date-status">${toggleYesNo(isDateShowing)}</span>
                 </button>
-                ${showDate()}
+                ${showDeadline(isDateShowing, date, time)}
                 <button class="card__repeat-toggle" type="button">
-                  repeat:<span class="card__repeat-status">${toggleRepeatingTask()}</span>
+                  repeat:<span class="card__repeat-status">${toggleYesNo(isRepeatingTask)}</span>
                 </button>
                 ${getRepeatingTaskMarkup()}
               </div>
