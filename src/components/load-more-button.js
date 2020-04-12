@@ -4,11 +4,7 @@ import {tasks} from "../main";
 import {render} from "../main";
 import {showingTasksCount} from "../consts";
 
-const renderButtonLoadMore = () => {
-  return createLoadMoreButtonTemplate();
-};
-
-const createLoadMoreButtonTemplate = () => {
+export const createLoadMoreButtonTemplate = () => {
   return `<button class="load-more" type="button">load more</button>`;
 };
 
@@ -25,9 +21,7 @@ const loadMoreClickHandler = () => {
   }
 };
 
-const addListeners = () => {
+export const addListeners = () => {
   const loadMoreButton = document.querySelector(`.load-more`);
   loadMoreButton.addEventListener(`click`, loadMoreClickHandler);
 };
-
-export {renderButtonLoadMore, addListeners};
