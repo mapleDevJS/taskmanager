@@ -4,15 +4,6 @@ export const QuantityTasks = {
   TASKS_BY_BUTTON: 8
 };
 
-export const FILTER_NAMES = [
-  `all`,
-  `overdue`,
-  `today`,
-  `favorites`,
-  `repeating`,
-  `archive`
-];
-
 export const MONTH_NAMES = [
   `January`,
   `February`,
