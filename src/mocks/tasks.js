@@ -1,5 +1,11 @@
-import {COLORS, DESCRIPTION_ITEMS, DEFAULT_REPEATING_DAYS} from "../consts";
+import {COLORS, DEFAULT_REPEATING_DAYS} from "../consts";
 import {getRandomBoolean, getRandomDate, getRandomItem} from "../utils";
+
+export const DESCRIPTION_ITEMS = [
+  `Изучить теорию`,
+  `Сделать домашку`,
+  `Пройти интенсив на соточку`
+];
 
 const generateRepeatingDays = () => {
   const repeatingDays = {};
