@@ -3,6 +3,10 @@ import {createFilterTemplate} from "./components/filter";
 import {createBoardTemplate} from "./components/board";
 import {addListeners} from "./components/load-more-button";
 import {QuantityTasks} from "./consts";
+import {generateTasks} from "./mocks/tasks";
+
+export const tasks = generateTasks(QuantityTasks.TOTAL);
+console.log(tasks);
 
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);

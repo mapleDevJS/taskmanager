@@ -2,8 +2,7 @@ import {createSortingTemplate} from "./board-sorting";
 import {createTaskTemplate} from "./task";
 import {renderTaskEdit} from "./task-edit";
 import {renderButtonLoadMore} from "./load-more-button.js";
-import {tasks} from "../mocks/tasks";
-import {showingTasksCount} from "../main";
+import {tasks} from "../main";
 
 const renderTasks = (taskQuantity) => {
   let markup = ``;

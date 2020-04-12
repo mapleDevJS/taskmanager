@@ -1,4 +1,4 @@
-import {COLORS, DESCRIPTION_ITEMS, QuantityTasks, DEFAULT_REPEATING_DAYS} from "../consts";
+import {COLORS, DESCRIPTION_ITEMS, DEFAULT_REPEATING_DAYS} from "../consts";
 import {getRandomBoolean, getRandomDate, getRandomItem} from "../utils";
 
 const generateRepeatingDays = () => {
@@ -9,7 +9,7 @@ const generateRepeatingDays = () => {
   return repeatingDays;
 };
 
-const generateTask = () => {
+export const generateTask = () => {
   const dueDate = getRandomBoolean() ? null : getRandomDate();
 
   return {
@@ -22,11 +22,6 @@ const generateTask = () => {
   };
 };
 
-const generateTasks = (count) => {
+export const generateTasks = (count) => {
   return new Array(count).fill(``).map(generateTask);
 };
-
-const tasks = generateTasks(QuantityTasks.TOTAL);
-console.log(tasks);
-
-export {tasks};

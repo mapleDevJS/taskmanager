@@ -1,4 +1,4 @@
-import {tasks} from "../mocks/tasks";
+import {tasks} from "../main";
 import {generateFilters} from "../mocks/filter";
 
 const createFilterMarkup = (filter) => {

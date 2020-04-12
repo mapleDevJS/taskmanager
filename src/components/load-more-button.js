@@ -1,6 +1,6 @@
 import {QuantityTasks} from "../consts";
 import {createTaskTemplate} from "./task";
-import {tasks} from "../mocks/tasks";
+import {tasks} from "../main";
 import {render} from "../main";
 import {showingTasksCount} from "../consts";
 
