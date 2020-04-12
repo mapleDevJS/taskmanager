@@ -1,5 +1,6 @@
 import {QuantityTasks} from "../consts";
-import {tasks, createTaskTemplate} from "./task";
+import {createTaskTemplate} from "./task";
+import {tasks} from "../mocks/tasks";
 import {render} from "../main";
 
 const renderButtonLoadMore = () => {
