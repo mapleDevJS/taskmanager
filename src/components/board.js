@@ -1,11 +1,20 @@
-import {renderTasks} from "./task.js";
+import {createSortingTemplate} from "./board-sorting";
+// import {createTaskTemplate} from "./task";
+import {createLoadMoreButtonTemplate} from "./load-more-button.js";
+// import {tasks} from "../main";
 
-const QUANTITY_TASKS = 8;
+// export const renderTasks = (start, end) => {
+//   let markup = ``;
+//   for (let i = start; i < end; i++) {
+//     markup += createTaskTemplate(tasks[i]);
+//   }
+//   return markup;
+// };
 
 export const createBoardTemplate = () => {
   return `<section class="board container">
-    <div class="board__tasks">
-      ${renderTasks(QUANTITY_TASKS)}
-    </div>
+    ${createSortingTemplate()}
+    <div class="board__tasks"></div>
+    ${createLoadMoreButtonTemplate()}
   </section>`;
 };
