@@ -10,14 +10,8 @@ export const DESCRIPTION_ITEMS = [
 const generateRepeatingDays = (dueDate) => {
   const repeatingDays = new Map();
 
-  if (dueDate === null) {
-    for (const day of DAYS) {
-      repeatingDays.set(day, false);
-    }
-  } else {
-    for (const day of DAYS) {
-      repeatingDays.set(day, getRandomBoolean());
-    }
+  for (const day of DAYS) {
+    repeatingDays.set(day, dueDate !== null ? getRandomBoolean() : false);
   }
 
   return repeatingDays;
