@@ -7,8 +7,8 @@ const FILTER_NAMES = [
   `archive`
 ];
 
-const countTodayTasks = (tasksData) => {
-  return tasksData.filter((task) => {
+const countTodayTasks = (tasks) => {
+  return tasks.filter((task) => {
     if (!task.dueDate) {
       return false;
     }
@@ -16,24 +16,24 @@ const countTodayTasks = (tasksData) => {
   });
 };
 
-const generateFilters = (taskData) => {
-  const quantitytByName = {
-    all: taskData,
-    overdue: taskData.filter((task) => task.dueDate < new Date()),
-    today: countTodayTasks(taskData),
-    favorites: taskData.filter((task) => task.isFavorite),
-    repeating: taskData.filter((task) => task.isRepeat),
-    archive: taskData.filter((task) => task.isArchive),
+const generateFilters = (tasks) => {
+  const quantityByName = {
+    all: tasks,
+    overdue: tasks.filter((task) => task.dueDate < new Date()),
+    today: countTodayTasks(tasks),
+    favorites: tasks.filter((task) => task.isFavorite),
+    repeating: tasks.filter((task) => task.isRepeat),
+    archive: tasks.filter((task) => task.isArchive),
   };
 
-  const quantityByName = FILTER_NAMES.reduce((list, name) => {
-    list[name] = quantitytByName[name].length;
+  const filtersCount = FILTER_NAMES.reduce((list, name) => {
+    list[name] = quantityByName[name].length;
 
     return list;
   }, {});
 
   return FILTER_NAMES.map((name, index) => {
-    const count = quantityByName[name] || 0;
+    const count = filtersCount[name] || 0;
 
     return {
       name,
