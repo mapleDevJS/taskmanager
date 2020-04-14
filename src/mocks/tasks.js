@@ -1,5 +1,5 @@
-import {COLORS, DAYS} from "../consts";
-import {getRandomBoolean, getRandomDate, getRandomItem} from "../utils";
+import {COLORS, DAYS} from "../utils/consts";
+import {getRandomBoolean, getRandomDate, getRandomItem} from "../utils/utils";
 
 export const DESCRIPTION_ITEMS = [
   `Изучить теорию`,

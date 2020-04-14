@@ -4,7 +4,7 @@ import {createBoardTemplate} from "./components/board";
 import {createTaskTemplate} from "./components/task";
 import {createTaskEditTemplate} from "./components/task-edit";
 import {addListenerOnLoadMoreButton} from "./components/load-more-button";
-import {QuantityTasks} from "./consts";
+import {QuantityTasks} from "./utils/consts";
 import {generateTasks} from "./mocks/tasks";
 
 const tasks = generateTasks(QuantityTasks.TOTAL);
