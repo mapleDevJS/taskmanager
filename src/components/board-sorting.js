@@ -1,7 +1,19 @@
+const SortTypes = [
+  `DEFAULT`,
+  `DATE up`,
+  `DATE down`
+];
+
+const createSortingTypes = () => {
+  let markup = ``;
+  for (const type of SortTypes) {
+    markup += `<a href="#" class="board__filter">SORT BY ${type}</a>`;
+  }
+  return markup;
+};
+
 export const createSortingTemplate = () => {
   return `<div class="board__filter-list">
-    <a href="#" class="board__filter">SORT BY DEFAULT</a>
-    <a href="#" class="board__filter">SORT BY DATE up</a>
-    <a href="#" class="board__filter">SORT BY DATE down</a>
+    ${createSortingTypes()}
   </div>`;
 };
