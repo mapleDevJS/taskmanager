@@ -1,5 +1,3 @@
-import {tasks} from "../main";
-
 const FILTER_NAMES = [
   `all`,
   `overdue`,
@@ -60,7 +58,7 @@ export const createFilterMarkup = ({name, count, isChecked}) => {
   );
 };
 
-export const createFilterTemplate = () => {
+export const createFilterTemplate = (tasks) => {
   const filters = generateFilters(tasks);
   const filtersMarkup = filters.map(createFilterMarkup).join(`\n`);
 

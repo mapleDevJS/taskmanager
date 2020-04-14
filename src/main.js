@@ -7,7 +7,9 @@ import {addListenerOnLoadMoreButton} from "./components/load-more-button";
 import {QuantityTasks} from "./consts";
 import {generateTasks} from "./mocks/tasks";
 
-export const tasks = generateTasks(QuantityTasks.TOTAL);
+const tasks = generateTasks(QuantityTasks.TOTAL);
+
+
 let showingTasksCount = QuantityTasks.ON_START;
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
@@ -33,7 +35,7 @@ const loadMoreClickHandler = () => {
 };
 
 render(siteHeaderElement, createSiteMenuTemplate());
-render(siteMainElement, createFilterTemplate());
+render(siteMainElement, createFilterTemplate(tasks));
 render(siteMainElement, createBoardTemplate());
 
 const boardTasksElement = document.querySelector(`.board__tasks`);
