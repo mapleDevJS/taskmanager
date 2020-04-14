@@ -36,15 +36,11 @@ const getRepeatingTaskMarkup = (isRepeatingTask, repeatingDaysMarkup) => {
 export const createTaskEditTemplate = ({description, dueDate, color, repeatingDays}) => {
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isDateShowing = !!dueDate;
-
   const date = isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``;
   const time = isDateShowing ? formatTime(dueDate) : ``;
-
   const isRepeatingTask = Object.values(repeatingDays).some(Boolean);
   const repeatClass = isRepeatingTask ? `card--repeat` : ``;
   const deadlineClass = isExpired ? `card--deadline` : ``;
-
-  const colorsMarkup = createColorsMarkup(COLORS, color);
   const repeatingDaysMarkup = createRepeatingDaysMarkup(DAYS, repeatingDays);
 
   return (
@@ -84,7 +80,7 @@ export const createTaskEditTemplate = ({description, dueDate, color, repeatingDa
             <div class="card__colors-inner">
               <h3 class="card__colors-title">Color</h3>
               <div class="card__colors-wrap">
-              ${colorsMarkup}
+              ${createColorsMarkup(COLORS, color)}
               </div>
             </div>
           </div>
