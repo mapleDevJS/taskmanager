@@ -1,6 +1,6 @@
 import {COLORS, DAYS, MONTH_NAMES} from "../consts";
 import {formatTime} from "../utils";
-import {createColorsMarkup} from "./color";
+import {createColorsMarkup} from "./task-color";
 import {createRepeatingDaysMarkup} from "./repeating-days";
 
 const toggleYesNo = (element) => {
