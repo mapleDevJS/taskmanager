@@ -1,5 +1,5 @@
-import {COLORS, DAYS, MONTH_NAMES} from "../utils/consts";
-import {formatTime} from "../utils/utils";
+import {COLORS, DAYS, MONTH_NAMES} from "../../util/consts";
+import {formatTime} from "../../util/util";
 import {createColorsMarkup} from "./task-color";
 import {createRepeatingDaysMarkup} from "./repeating-days";
 

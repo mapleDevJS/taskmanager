@@ -1,10 +1,10 @@
-import {createSiteMenuTemplate} from "./components/site-menu";
-import {createFilterTemplate} from "./components/filter";
-import {createBoardTemplate} from "./components/board";
-import {createTaskTemplate} from "./components/task";
-import {createTaskEditTemplate} from "./components/task-edit";
-import {addListenerOnLoadMoreButton} from "./components/load-more-button";
-import {QuantityTasks} from "./utils/consts";
+import {createSiteMenuTemplate} from "./components/menu/site-menu";
+import {createFilterTemplate} from "./components/filter/filter";
+import {createBoardTemplate} from "./components/board/board";
+import {createTaskTemplate} from "./components/task/task";
+import {createTaskEditTemplate} from "./components/task/task-edit";
+import {addListenerOnLoadMoreButton} from "./components/board/load-more-button";
+import {QuantityTasks} from "./util/consts";
 import {generateTasks} from "./mocks/tasks";
 
 const tasks = generateTasks(QuantityTasks.TOTAL);
