@@ -18,7 +18,7 @@ const countTodayTasks = (tasks) => {
   });
 };
 
-const generateFilters = (tasks) => {
+export const generateFilters = (tasks) => {
   const quantityByName = {
     all: tasks,
     overdue: tasks.filter((task) => task.dueDate < new Date()),
@@ -60,8 +60,7 @@ export const createFilterMarkup = ({name, count, isChecked}) => {
   );
 };
 
-export const createFilterTemplate = (tasks) => {
-  const filters = generateFilters(tasks);
+export const createFilterTemplate = (filters) => {
   const filtersMarkup = filters.map(createFilterMarkup).join(`\n`);
 
   return `<section class="main__filter filter container">

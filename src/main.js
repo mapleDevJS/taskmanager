@@ -6,39 +6,21 @@ import TasksComponent from "./components/task/tasks";
 import SiteMenuComponent from "./components/menu/site-menu";
 import SortComponent from "./components/board/sorting";
 import {QuantityTasks} from "./util/consts";
+import {generateFilters} from "./components/filter/filter";
 import {generateTasks} from "./mocks/tasks";
 import {render} from "./util/util";
 
 
-let showingTasksCount = QuantityTasks.ON_START;
+// let showingTasksCount = QuantityTasks.ON_START;
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 
-const renderTasks = (container, template, start, end) => {
-  tasks.slice(start, end).forEach((task) => render(container, template(task)));
-};
-
-const loadMoreClickHandler = () => {
-  const prevTasksCount = showingTasksCount;
-  showingTasksCount += QuantityTasks.BY_BUTTON;
-
-  if (showingTasksCount > tasks.length) {
-    renderTasks(boardTasksElement, createTaskTemplate, prevTasksCount, tasks.length);
-    document.querySelector(`.load-more`).remove();
-  } else {
-    renderTasks(boardTasksElement, createTaskTemplate, prevTasksCount, showingTasksCount);
-  }
-};
-
 const tasks = generateTasks(QuantityTasks.TOTAL);
+const filters = generateFilters(tasks);
 
-render(siteHeaderElement, createSiteMenuTemplate());
-render(siteMainElement, createFilterTemplate(tasks));
-render(siteMainElement, createBoardTemplate());
+const renderTask = () => {};
 
-const boardTasksElement = document.querySelector(`.board__tasks`);
-renderTasks(boardTasksElement, createTaskEditTemplate, 0, 1);
-renderTasks(boardTasksElement, createTaskTemplate, 1, showingTasksCount);
+const renderBoard = () => {};
 
-// addListenerOnLoadMoreButton(loadMoreClickHandler);
-
+render(siteHeaderElement, new SiteMenuComponent().getElement());
+render(siteMainElement, new FilterComponent(filters).getElement());
