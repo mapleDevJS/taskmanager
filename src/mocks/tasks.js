@@ -1,13 +1,13 @@
 import {COLORS, DAYS} from "../util/consts";
 import {getRandomBoolean, getRandomDate, getRandomItem} from "../util/util";
 
-export const DESCRIPTION_ITEMS = [
+const TASK_DESCRIPTIONS = [
   `Изучить теорию`,
   `Сделать домашку`,
   `Пройти интенсив на соточку`
 ];
 
-const generateRepeatingDays = (dueDate) => {
+const getRandomRepeating = (dueDate) => {
   const repeatingDays = new Map();
 
   for (const day of DAYS) {
@@ -17,13 +17,13 @@ const generateRepeatingDays = (dueDate) => {
   return repeatingDays;
 };
 
-export const generateTask = () => {
+const generateTask = () => {
   const dueDate = getRandomBoolean() ? null : getRandomDate();
 
   return {
-    description: getRandomItem(DESCRIPTION_ITEMS),
+    description: getRandomItem(TASK_DESCRIPTIONS),
     dueDate,
-    repeatingDays: generateRepeatingDays(dueDate),
+    repeatingDays: getRandomRepeating(dueDate),
     color: getRandomItem(COLORS),
     isArchive: getRandomBoolean(),
     isFavorite: getRandomBoolean(),
@@ -33,3 +33,5 @@ export const generateTask = () => {
 export const generateTasks = (count) => {
   return new Array(count).fill(``).map(generateTask);
 };
+
+
