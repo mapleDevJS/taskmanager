@@ -1,5 +1,14 @@
-export const createColorsMarkup = (colors, currentColor) => {
-  return colors
+import {createElement} from "../../util/util.js";
+
+export default class Color {
+  constructor(colors, currentColor) {
+    this._colors = colors;
+    this._currentColor = currentColor;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return this._colors
     .map((color, index) => {
       return (
         `<input
@@ -8,7 +17,7 @@ export const createColorsMarkup = (colors, currentColor) => {
           class="card__color-input card__color-input--${color} visually-hidden"
           name="color"
           value="${color}"
-          ${currentColor === color ? `checked` : ``}
+          ${this._currentColor === color ? `checked` : ``}
         />
         <label
           for="color-${color}--${index}"
@@ -18,4 +27,19 @@ export const createColorsMarkup = (colors, currentColor) => {
       );
     })
     .join(`\n`);
-};
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
+
+
