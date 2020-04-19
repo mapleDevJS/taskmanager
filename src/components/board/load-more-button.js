@@ -4,9 +4,6 @@ export const createLoadMoreButtonTemplate = () => {
   return `<button class="load-more" type="button">load more</button>`;
 };
 
-export const addListenerOnLoadMoreButton = (cb) =>
-  document.querySelector(`.load-more`).addEventListener(`click`, cb);
-
 export default class LoadMoreButton {
   constructor() {
     this._element = null;
@@ -28,3 +25,6 @@ export default class LoadMoreButton {
     this._element = null;
   }
 }
+
+export const addListenerOnLoadMoreButton = (cb) =>
+  document.querySelector(`.load-more`).addEventListener(`click`, cb);

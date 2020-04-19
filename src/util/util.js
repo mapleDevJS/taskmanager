@@ -1,3 +1,8 @@
+export const RenderPosition = {
+  AFTER_BEGIN: `afterbegin`,
+  BEFORE_END: `beforeend`
+};
+
 export const getRandomBoolean = () => Math.random() > 0.5;
 
 export const generateCheckedStatus = () => {
@@ -38,4 +43,27 @@ export const createElement = (template) => {
   newElement.innerHTML = template;
 
   return newElement.firstChild;
+};
+
+export const render = (container, element, place = RenderPosition.BEFORE_END) => {
+  switch (place) {
+    case RenderPosition.AFTERBEGIN:
+      if (element.length > 1) {
+        Array.from(element).forEach((it) => {
+          container.prepend(it);
+        });
+      } else {
+        container.prepend(element);
+      }
+      break;
+    case RenderPosition.BEFOREEND:
+      if (element.length > 1) {
+        Array.from(element).forEach((it) => {
+          container.append(it);
+        });
+      } else {
+        container.append(element);
+      }
+      break;
+  }
 };
