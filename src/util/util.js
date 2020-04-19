@@ -15,7 +15,7 @@ const getRandomIntegerNumber = (max) => {
 };
 
 export const getRandomItem = (array) => {
-  return array[Math.floor(Math.random() * array.length)]
+  return array[Math.floor(Math.random() * array.length)];
 };
 
 export const getRandomDate = () => {
