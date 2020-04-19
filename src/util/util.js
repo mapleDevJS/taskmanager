@@ -4,12 +4,13 @@ export const RenderPosition = {
 };
 
 export const getRandomBoolean = () => Math.random() > 0.5;
+const getRandomSign = () => getRandomBoolean() ? 1 : -1;
 
-export const generateCheckedStatus = () => {
-  return getRandomBoolean ? `checked` : ``;
-};
+// export const generateCheckedStatus = () => {
+//   return getRandomBoolean ? `checked` : ``;
+// };
 
-export const getRandomIntegerNumber = (max) => {
+const getRandomIntegerNumber = (max) => {
   return Math.floor(Math.random() * max);
 };
 
@@ -19,10 +20,9 @@ export const getRandomItem = (array) => {
 
 export const getRandomDate = () => {
   const targetDate = new Date();
-  const sign = getRandomBoolean() ? 1 : -1;
-  const diffValue = sign * getRandomIntegerNumber(8);
+  const delta = getRandomSign() * getRandomIntegerNumber(8);
 
-  targetDate.setDate(targetDate.getDate() + diffValue);
+  targetDate.setDate(targetDate.getDate() + delta);
 
   return targetDate;
 };
@@ -47,23 +47,11 @@ export const createElement = (template) => {
 
 export const render = (container, element, place = RenderPosition.BEFORE_END) => {
   switch (place) {
-    case RenderPosition.AFTERBEGIN:
-      if (element.length > 1) {
-        Array.from(element).forEach((it) => {
-          container.prepend(it);
-        });
-      } else {
-        container.prepend(element);
-      }
+    case RenderPosition.AFTER_BEGIN:
+      container.prepend(element);
       break;
-    case RenderPosition.BEFOREEND:
-      if (element.length > 1) {
-        Array.from(element).forEach((it) => {
-          container.append(it);
-        });
-      } else {
-        container.append(element);
-      }
+    case RenderPosition.BEFORE_END:
+      container.append(element);
       break;
   }
 };
