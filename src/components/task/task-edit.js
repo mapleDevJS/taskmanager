@@ -1,5 +1,5 @@
 import {COLORS, DAYS, MONTH_NAMES} from "../../util/consts";
-import {formatTime} from "../../util/util";
+import {createElement, formatTime} from "../../util/util";
 import {createColorsMarkup} from "./task-color";
 import {createRepeatingDaysMarkup} from "./repeating-days";
 
@@ -94,3 +94,26 @@ export const createTaskEditTemplate = ({description, dueDate, color, repeatingDa
     </article>`
   );
 };
+
+export default class TaskEdit {
+  constructor(task) {
+    this._task = task;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createTaskEditTemplate(this._task);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
