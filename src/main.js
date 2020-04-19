@@ -69,3 +69,7 @@ const renderBoard = (boardComponent) => {
 
 render(siteHeaderElement, new SiteMenuComponent().getElement());
 render(siteMainElement, new FilterComponent(filters).getElement());
+
+const boardComponent = new BoardComponent();
+render(siteMainElement, boardComponent.getElement());
+renderBoard(boardComponent, tasks);
