@@ -44,38 +44,36 @@ export const generateFilters = (tasks) => {
     };
   });
 };
-
-export const createFilterMarkup = ({name, count, isChecked}) => {
-  return (
-    `<input
-      type="radio"
-      id="filter__${name}"
-      class="filter__input visually-hidden"
-      name="filter"
-      ${isChecked}
-    />
-    <label for="filter__${name}" class="filter__label">
-      ${name} <span class="filter__${name}-count">${count}</span></label
-    >`
-  );
-};
-
-export const createFilterTemplate = (filters) => {
-  const filtersMarkup = filters.map(createFilterMarkup).join(`\n`);
-
-  return `<section class="main__filter filter container">
-    ${filtersMarkup}
-  </section>`;
-};
-
 export default class Filter {
   constructor(filters) {
     this._filters = filters;
+    // this._name = filters.name;
+    // this._count = filters.count;
+    // this._isChecked = filters.isChecked;
     this._element = null;
   }
 
+  _createFilterMarkup({name, count, isChecked}) {
+    return (
+      `<input
+        type="radio"
+        id="filter__${name}"
+        class="filter__input visually-hidden"
+        name="filter"
+        ${isChecked}
+      />
+      <label for="filter__${name}" class="filter__label">
+        ${name} <span class="filter__${name}-count">${count}</span></label
+      >`
+    );
+  }
+
   getTemplate() {
-    return createFilterTemplate(this._filters);
+    // return createFilterTemplate(this._filters);
+
+    return `<section class="main__filter filter container">
+      ${this._filters.map(this._createFilterMarkup).join(`\n`)}
+    </section>`;
   }
 
   getElement() {
