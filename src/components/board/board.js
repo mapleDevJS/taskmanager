@@ -1,11 +1,12 @@
 import {createElement} from "../../util/util.js";
 import {createSortingTemplate} from "./sorting";
 import {createLoadMoreButtonTemplate} from "./load-more-button.js";
+import {createTasksTemplate} from "../task/tasks";
 
 export const createBoardTemplate = () => {
   return `<section class="board container">
     ${createSortingTemplate()}
-    <div class="board__tasks"></div>
+    ${createTasksTemplate()}
     ${createLoadMoreButtonTemplate()}
   </section>`;
 };
