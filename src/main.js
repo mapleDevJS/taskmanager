@@ -1,4 +1,5 @@
 import BoardComponent from "./components/board/board";
+import LoadMoreButtonComponent from "./components/board/load-more-button";
 import FilterComponent from "./components/filter/filter";
 import TaskEditComponent from "./components/task/task-edit";
 import TaskComponent from "./components/task/task";
@@ -10,8 +11,6 @@ import {generateFilters} from "./components/filter/filter";
 import {generateTasks} from "./mocks/tasks";
 import {render} from "./util/util";
 
-
-// let showingTasksCount = QuantityTasks.ON_START;
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 
@@ -39,7 +38,34 @@ const renderTask = (taskListElement, task) => {
   render(taskListElement, taskComponent.getElement());
 };
 
-const renderBoard = () => {};
+const renderBoard = (boardComponent) => {
+  render(boardComponent.getElement(), new SortComponent().getElement());
+  render(boardComponent.getElement(), new TasksComponent().getElement());
+
+  const taskListElement = boardComponent.getElement().querySelector(`.board__tasks`);
+
+  let showingTasksCount = QuantityTasks.ON_START;
+  tasks.slice(0, showingTasksCount)
+    .forEach((task) => {
+      renderTask(taskListElement, task);
+    });
+
+  const loadMoreButtonComponent = new LoadMoreButtonComponent();
+  render(boardComponent.getElement(), loadMoreButtonComponent.getElement());
+
+  loadMoreButtonComponent.getElement().addEventListener(`click`, () => {
+    const prevTasksCount = showingTasksCount;
+    showingTasksCount = showingTasksCount + QuantityTasks.BY_BUTTON;
+
+    tasks.slice(prevTasksCount, showingTasksCount)
+      .forEach((task) => renderTask(taskListElement, task));
+
+    if (showingTasksCount >= tasks.length) {
+      loadMoreButtonComponent.getElement().remove();
+      loadMoreButtonComponent.removeElement();
+    }
+  });
+};
 
 render(siteHeaderElement, new SiteMenuComponent().getElement());
 render(siteMainElement, new FilterComponent(filters).getElement());

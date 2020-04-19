@@ -25,6 +25,3 @@ export default class LoadMoreButton {
     this._element = null;
   }
 }
-
-export const addListenerOnLoadMoreButton = (cb) =>
-  document.querySelector(`.load-more`).addEventListener(`click`, cb);
