@@ -1,21 +1,15 @@
-import BoardComponent from "./components/board/board";
-import LoadMoreButtonComponent from "./components/board/load-more-button";
-import FilterComponent from "./components/filter/filter";
-import TaskEditComponent from "./components/task/task-edit";
-import TaskComponent from "./components/task/task";
-import TasksComponent from "./components/task/tasks";
-import SiteMenuComponent from "./components/menu/site-menu";
-import SortComponent from "./components/board/sorting";
+import Board from "./components/board/board";
+import LoadMoreButton from "./components/board/load-more-button";
+import Filter from "./components/filter/filter";
+import TaskEdit from "./components/task/task-edit";
+import Task from "./components/task/task";
+import Tasks from "./components/task/tasks";
+import SiteMenu from "./components/menu/site-menu";
+import Sort from "./components/board/sorting";
 import {QuantityTasks} from "./util/consts";
 import {generateFilters} from "./components/filter/filter";
 import {generateTasks} from "./mocks/tasks";
 import {render} from "./util/util";
-
-const siteMainElement = document.querySelector(`.main`);
-const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
-
-const tasks = generateTasks(QuantityTasks.TOTAL);
-const filters = generateFilters(tasks);
 
 const renderTask = (taskListElement, task) => {
   const onEditButtonClick = () => {
@@ -27,11 +21,11 @@ const renderTask = (taskListElement, task) => {
     taskListElement.replaceChild(taskComponent.getElement(), taskEditComponent.getElement());
   };
 
-  const taskComponent = new TaskComponent(task);
+  const taskComponent = new Task(task);
   const editButton = taskComponent.getElement().querySelector(`.card__btn--edit`);
   editButton.addEventListener(`click`, onEditButtonClick);
 
-  const taskEditComponent = new TaskEditComponent(task);
+  const taskEditComponent = new TaskEdit(task);
   const editForm = taskEditComponent.getElement().querySelector(`form`);
   editForm.addEventListener(`submit`, onEditFormSubmit);
 
@@ -39,8 +33,8 @@ const renderTask = (taskListElement, task) => {
 };
 
 const renderBoard = (boardComponent) => {
-  render(boardComponent.getElement(), new SortComponent().getElement());
-  render(boardComponent.getElement(), new TasksComponent().getElement());
+  render(boardComponent.getElement(), new Sort().getElement());
+  render(boardComponent.getElement(), new Tasks().getElement());
 
   const taskListElement = boardComponent.getElement().querySelector(`.board__tasks`);
 
@@ -50,7 +44,7 @@ const renderBoard = (boardComponent) => {
       renderTask(taskListElement, task);
     });
 
-  const loadMoreButtonComponent = new LoadMoreButtonComponent();
+  const loadMoreButtonComponent = new LoadMoreButton();
   render(boardComponent.getElement(), loadMoreButtonComponent.getElement());
 
   loadMoreButtonComponent.getElement().addEventListener(`click`, () => {
@@ -67,9 +61,15 @@ const renderBoard = (boardComponent) => {
   });
 };
 
-render(siteHeaderElement, new SiteMenuComponent().getElement());
-render(siteMainElement, new FilterComponent(filters).getElement());
+const siteMainElement = document.querySelector(`.main`);
+const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 
-const boardComponent = new BoardComponent();
+const tasks = generateTasks(QuantityTasks.TOTAL);
+const filters = generateFilters(tasks);
+
+render(siteHeaderElement, new SiteMenu().getElement());
+render(siteMainElement, new Filter(filters, tasks).getElement());
+
+const boardComponent = new Board();
 render(siteMainElement, boardComponent.getElement());
-renderBoard(boardComponent, tasks);
+renderBoard(boardComponent);
