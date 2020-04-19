@@ -1,22 +1,12 @@
-import {createElement} from "../../util/util.js";
-import {createSortingTemplate} from "./sorting";
-import {createLoadMoreButtonTemplate} from "./load-more-button.js";
-import {createTasksTemplate} from "../task/tasks";
+import {createElement} from "../../util/util";
 
-export const createBoardTemplate = () => {
-  return `<section class="board container">
-    ${createSortingTemplate()}
-    ${createTasksTemplate()}
-    ${createLoadMoreButtonTemplate()}
-  </section>`;
-};
 export default class Board {
   constructor() {
     this._element = null;
   }
 
   getTemplate() {
-    return createBoardTemplate();
+    return `<section class="board container"></section>`;
   }
 
   getElement() {
