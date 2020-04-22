@@ -1,4 +1,4 @@
-import {createElement} from "../../util/util.js";
+import {createElement} from "../../util/dom-util";
 
 export default class SiteMenu {
   constructor() {
