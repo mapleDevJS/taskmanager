@@ -1,6 +1,7 @@
 import {COLORS, DAYS, MONTH_NAMES} from "../../util/consts";
-import {createElement, formatTime} from "../../util/util";
-import RepeatingDay from "./repeating-days";
+import {createElement} from "../../util/dom-util";
+import {formatTime} from "../../util/util";
+import RepeatingDay from "./repeating-day";
 import Color from "./task-color";
 
 export default class TaskEdit {
