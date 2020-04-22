@@ -1,4 +1,4 @@
-import {createElement} from "../../util/util";
+import {createElement} from "../../util/dom-util";
 
 export default class Board {
   constructor() {
