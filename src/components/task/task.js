@@ -1,5 +1,6 @@
 import {MONTH_NAMES} from "../../util/consts";
-import {createElement, formatTime} from "../../util/util";
+import {createElement} from "../../util/dom-util";
+import {formatTime} from "../../util/util";
 
 export default class Task {
   constructor(task) {
