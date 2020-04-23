@@ -131,7 +131,6 @@ const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 
 const tasks = generateTasks(QuantityTasks.TOTAL);
-console.log(tasks);
 const filters = generateFilters(tasks);
 
 render(siteHeaderElement, new SiteMenu().getElement());

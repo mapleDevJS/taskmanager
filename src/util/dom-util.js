@@ -15,7 +15,6 @@ const createElements = (template) => {
 const toMarkup = (element) => {
   const temp = document.createElement(`div`);
   temp.append(element);
-  console.log(temp.innerHTML);
   return temp.innerHTML;
 };
 
