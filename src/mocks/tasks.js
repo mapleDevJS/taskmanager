@@ -8,11 +8,11 @@ const TASK_DESCRIPTIONS = [
 ];
 
 const getRandomRepeating = (dueDate) => {
-  const repeatingDays = new Map();
+  const repeatingDays = {};
 
-  for (const day of DAYS) {
-    repeatingDays.set(day, dueDate !== null ? getRandomBoolean() : false);
-  }
+  DAYS.map((day) => {
+    repeatingDays[day] = (dueDate === null) ? getRandomBoolean() : false;
+  });
 
   return repeatingDays;
 };
@@ -33,5 +33,3 @@ const generateTask = () => {
 export const generateTasks = (count) => {
   return new Array(count).fill(``).map(generateTask);
 };
-
-

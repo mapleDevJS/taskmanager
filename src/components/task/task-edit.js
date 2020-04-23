@@ -1,7 +1,8 @@
 import {COLORS, DAYS, MONTH_NAMES} from "../../util/consts";
-import {createElement, formatTime} from "../../util/util";
-import RepeatingDay from "./repeating-days";
-import Color from "./task-color";
+import {createElement, toMarkup} from "../../util/dom-util";
+import {formatTime} from "../../util/util";
+import RepeatingDay from "./repeating-day";
+import TaskColor from "./task-color";
 
 export default class TaskEdit {
   constructor(task) {
@@ -19,29 +20,43 @@ export default class TaskEdit {
   }
 
   _showDeadline() {
-    return this._isDateShowing ?
-      `<fieldset class="card__date-deadline">
-                    <label class="card__input-deadline-wrap">
-                      <input
-                        class="card__date"
-                        type="text"
-                        placeholder=""
-                        name="date"
-                        value="${this._getDate()} ${this._getTime()}"
-                      />
-                    </label>
-                  </fieldset>`
-      : ``;
+    return (
+      this._isDateShowing ?
+        `<fieldset class="card__date-deadline">
+          <label class="card__input-deadline-wrap">
+            <input
+              class="card__date"
+              type="text"
+              placeholder=""
+              name="date"
+              value="${this._getDate()} ${this._getTime()}"
+            />
+          </label>
+        </fieldset>` : ``);
   }
 
-  _getRepeatingTaskMarkup(repeatingDaysMarkup) {
-    return this._isRepeatingTask ?
-      `<fieldset class="card__repeat-days">
-          <div class="card__repeat-days-inner">
-            ${repeatingDaysMarkup}
-          </div>
-        </fieldset>`
-      : ``;
+  _getColorsMarkup() {
+    return COLORS.map((color, index) => new TaskColor(color, index, this._color).getElement())
+      .map(toMarkup)
+      .join(`\n`);
+  }
+
+
+  _getRepeatingDaysMarkup(repeatingDays) {
+    return DAYS.map((day, index) => new RepeatingDay(day, index, repeatingDays).getElement())
+      .map(toMarkup)
+      .join(`\n`);
+  }
+
+  _getRepeatingTaskMarkup() {
+    return (
+      this._isRepeatingTask ?
+        `<fieldset class="card__repeat-days">
+            <div class="card__repeat-days-inner">
+              ${this._getRepeatingDaysMarkup(this._repeatingDays)}
+            </div>
+          </fieldset>`
+        : ``);
   }
 
   _getDate() {
@@ -60,10 +75,6 @@ export default class TaskEdit {
     return this._isRepeatingTask ? `card--repeat` : ``;
   }
 
-  _getRepeatingDaysMarkup() {
-    return new RepeatingDay(DAYS, this._repeatingDays).getTemplate();
-  }
-
   getTemplate() {
     return (
       `<article class="card card--edit card--${this._color} ${this._getRepeatClass()} ${this._getDeadlineClass()}">
@@ -74,7 +85,6 @@ export default class TaskEdit {
                 <use xlink:href="#wave"></use>
               </svg>
             </div>
-
             <div class="card__textarea-wrap">
               <label>
                 <textarea
@@ -84,7 +94,6 @@ export default class TaskEdit {
                 >${this._description}</textarea>
               </label>
             </div>
-
             <div class="card__settings">
               <div class="card__details">
                 <div class="card__dates">
@@ -95,18 +104,16 @@ export default class TaskEdit {
                   <button class="card__repeat-toggle" type="button">
                     repeat:<span class="card__repeat-status">${this._toggleYesNo(this._isRepeatingTask)}</span>
                   </button>
-                  ${this._getRepeatingTaskMarkup(this._isRepeatingTask, this._getRepeatingDaysMarkup())}
+                  ${this._getRepeatingTaskMarkup()}
                 </div>
-              </div>
-
-              <div class="card__colors-inner">
-                <h3 class="card__colors-title">Color</h3>
-                <div class="card__colors-wrap">
-                ${new Color(COLORS, this._color).getTemplate()}
+                <div class="card__colors-inner">
+                  <h3 class="card__colors-title">Color</h3>
+                  <div class="card__colors-wrap">
+                    ${this._getColorsMarkup()}
+                  </div>
                 </div>
               </div>
             </div>
-
             <div class="card__status-btns">
               <button class="card__save" type="submit">save</button>
               <button class="card__delete" type="button">delete</button>

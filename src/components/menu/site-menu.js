@@ -1,39 +1,38 @@
-import {createElement} from "../../util/util.js";
+import {createElement} from "../../util/dom-util";
 
+const MENU_ITEMS = new Map([
+  [`new-task`, `+ ADD NEW TASK`],
+  [`task`, `TASKS`],
+  [`statistic`, `STATISTICS`]
+]);
 export default class SiteMenu {
   constructor() {
     this._element = null;
   }
 
+  _getMenuItem(key, value) {
+    return (`
+        <input
+          type="radio"
+          name="control"
+          id="control__${key}"
+          class="control__input visually-hidden"
+        />
+        <label for="control__${key}" class="control__label control__label--${key}"
+          >${value}</label
+        >`);
+  }
+
+  _getMenuMarkup() {
+    return [...MENU_ITEMS.entries()]
+      .map(([value, key]) => this._getMenuItem(value, key))
+      .join(`\n`);
+  }
+
   getTemplate() {
     return (
       `<section class="control__btn-wrap">
-        <input
-          type="radio"
-          name="control"
-          id="control__new-task"
-          class="control__input visually-hidden"
-        />
-        <label for="control__new-task" class="control__label control__label--new-task"
-          >+ ADD NEW TASK</label
-        >
-        <input
-          type="radio"
-          name="control"
-          id="control__task"
-          class="control__input visually-hidden"
-          checked
-        />
-        <label for="control__task" class="control__label">TASKS</label>
-        <input
-          type="radio"
-          name="control"
-          id="control__statistic"
-          class="control__input visually-hidden"
-        />
-        <label for="control__statistic" class="control__label"
-          >STATISTICS</label
-        >
+        ${this._getMenuMarkup()}
       </section>`
     );
   }
