@@ -51,5 +51,4 @@ const remove = (component) => {
   component.removeElement();
 };
 
-
 export {createElement, createElements, toMarkup, render, replace, remove};
