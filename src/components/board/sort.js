@@ -1,23 +1,24 @@
-import {createElement} from "../../util/dom-util";
+import Abstract from "../abstract";
 
-const SORT_TYPES = [
-  `DEFAULT`,
-  `DATE up`,
-  `DATE down`
-];
+export const SortType = {
+  DEFAULT: `default`,
+  DATE_UP: `date-up`,
+  DATE_DOWN: `date-down`
+};
 
-export default class Sort {
+export default class Sort extends Abstract {
   constructor() {
-    this._element = null;
+    super();
+
+    this._currenSortType = SortType.DEFAULT;
   }
 
   _getSortTemplate() {
-    return (`
-    <div class="board__filter-list">
-      ${SORT_TYPES.map((type) =>
-        `<a href="#" class="board__filter">SORT BY ${type}</a>`).join(`\n`)}
-    </div>
-  `).trim();
+    let markup = ``;
+    for (let [value, key] of Object.entries(SortType)) {
+      markup += `<a href="#" data-sort-type="${key}" class="board__filter">SORT BY ${value}</a>`;
+    }
+    return markup;
   }
 
   getTemplate() {
@@ -28,15 +29,27 @@ export default class Sort {
     );
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
+  getSortType() {
+    return this._currenSortType;
   }
 
-  removeElement() {
-    this._element = null;
+  setSortTypeChangeHandler(handler) {
+    this.getElement().addEventListener(`click`, (evt) => {
+      evt.preventDefault();
+
+      if (evt.target.tagName !== `A`) {
+        return;
+      }
+
+      const sortType = evt.target.dataset.sortType;
+
+      if (this._currenSortType === sortType) {
+        return;
+      }
+
+      this._currenSortType = sortType;
+
+      handler(this._currenSortType);
+    });
   }
 }

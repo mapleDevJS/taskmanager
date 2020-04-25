@@ -1,15 +1,15 @@
 import {MONTH_NAMES} from "../../util/consts";
-import {createElement} from "../../util/dom-util";
 import {formatTime} from "../../util/util";
+import Abstract from "../abstract";
 
-export default class Task {
+export default class Task extends Abstract {
   constructor(task) {
+    super();
     this._task = task;
     this._color = task.color;
     this._description = task.description;
     this._isDateShowing = !!task.dueDate;
     this._repeatingDays = task.repeatingDays;
-    this._element = null;
   }
   _getDate() {
     return this._isDateShowing ? `${this._task.dueDate.getDate()} ${MONTH_NAMES[this._task.dueDate.getMonth()]}` : ``;
@@ -78,15 +78,8 @@ export default class Task {
       </article>`;
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
+  setEditButtonClickHandler(handler) {
+    this.getElement().querySelector(`.card__btn--edit`)
+      .addEventListener(`click`, handler);
   }
 }
