@@ -1,12 +1,12 @@
 import {createElements} from "../../util/dom-util";
+import Abstract from "../abstract";
 
-export default class RepeatingDay {
+export default class RepeatingDay extends Abstract {
   constructor(day, index, repeatingDays) {
-    // console.log(day, index, isChecked);
+    super();
     this._day = day;
     this._repeatingDays = repeatingDays;
     this._index = index;
-    this._element = null;
   }
 
   getTemplate() {
@@ -33,9 +33,4 @@ export default class RepeatingDay {
 
     return this._element;
   }
-
-  removeElement() {
-    this._element = null;
-  }
 }
-

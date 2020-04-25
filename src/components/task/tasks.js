@@ -1,25 +1,9 @@
-import {createElement} from "../../util/dom-util";
+import Abstract from "../abstract";
 
-export default class Tasks {
-  constructor() {
-    this._element = null;
-  }
-
+export default class Tasks extends Abstract {
   getTemplate() {
     return (
       `<div class="board__tasks"></div>`
     );
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

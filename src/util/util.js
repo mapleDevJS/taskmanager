@@ -1,8 +1,3 @@
-const RenderPosition = {
-  AFTER_BEGIN: `afterbegin`,
-  BEFORE_END: `beforeend`
-};
-
 const getRandomBoolean = () => Math.random() > 0.5;
 const getRandomSign = () => getRandomBoolean() ? 1 : -1;
 
@@ -34,15 +29,4 @@ const formatTime = (date) => {
   return `${hours}:${minutes}`;
 };
 
-const render = (container, element, place = RenderPosition.BEFORE_END) => {
-  switch (place) {
-    case RenderPosition.AFTER_BEGIN:
-      container.prepend(element);
-      break;
-    case RenderPosition.BEFORE_END:
-      container.append(element);
-      break;
-  }
-};
-
-export {RenderPosition, getRandomBoolean, getRandomItem, getRandomDate, formatTime, render};
+export {getRandomBoolean, getRandomItem, getRandomDate, formatTime};

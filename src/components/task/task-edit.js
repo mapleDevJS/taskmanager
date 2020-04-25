@@ -1,18 +1,19 @@
 import {COLORS, DAYS, MONTH_NAMES} from "../../util/consts";
-import {createElement, toMarkup} from "../../util/dom-util";
+import {toMarkup} from "../../util/dom-util";
 import {formatTime} from "../../util/util";
 import RepeatingDay from "./repeating-day";
 import TaskColor from "./task-color";
+import Abstract from "../abstract";
 
-export default class TaskEdit {
+export default class TaskEdit extends Abstract {
   constructor(task) {
+    super();
     this._task = task;
     this._color = task.color;
     this._description = task.description;
     this._isDateShowing = !!task.dueDate;
     this._repeatingDays = task.repeatingDays;
     this._isRepeatingTask = Object.values(task.repeatingDays).some(Boolean);
-    this._element = null;
   }
 
   _toggleYesNo(element) {
@@ -124,15 +125,8 @@ export default class TaskEdit {
     );
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
+  setSubmitHandler(handler) {
+    this.getElement().querySelector(`form`)
+      .addEventListener(`submit`, handler);
   }
 }

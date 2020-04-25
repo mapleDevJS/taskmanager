@@ -1,8 +1,8 @@
-import {createElement} from "../../util/dom-util";
-export default class Filter {
+import Abstract from "../abstract";
+export default class Filter extends Abstract {
   constructor(filters) {
+    super();
     this._filters = filters;
-    this._element = null;
   }
 
   _createFilterMarkup({name, count, isChecked}) {
@@ -26,17 +26,5 @@ export default class Filter {
         ${this._filters.map(this._createFilterMarkup).join(`\n`)}
       </section>`
     );
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

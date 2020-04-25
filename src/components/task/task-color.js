@@ -1,11 +1,12 @@
 import {createElements} from "../../util/dom-util";
+import Abstract from "../abstract";
 
-export default class TaskColor {
+export default class TaskColor extends Abstract {
   constructor(color, index, currentColor) {
+    super();
     this._color = color;
     this._index = index;
     this._currentColor = currentColor;
-    this._element = null;
   }
 
   getTemplate() {
@@ -33,10 +34,4 @@ export default class TaskColor {
 
     return this._element;
   }
-
-  removeElement() {
-    this._element = null;
-  }
 }
-
-

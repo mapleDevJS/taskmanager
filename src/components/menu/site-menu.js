@@ -1,15 +1,11 @@
-import {createElement} from "../../util/dom-util";
+import Abstract from "../abstract.js";
 
 const MENU_ITEMS = new Map([
   [`new-task`, `+ ADD NEW TASK`],
   [`task`, `TASKS`],
   [`statistic`, `STATISTICS`]
 ]);
-export default class SiteMenu {
-  constructor() {
-    this._element = null;
-  }
-
+export default class SiteMenu extends Abstract {
   _getMenuItem(key, value) {
     return (`
         <input
@@ -35,17 +31,5 @@ export default class SiteMenu {
         ${this._getMenuMarkup()}
       </section>`
     );
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
