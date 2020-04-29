@@ -3,9 +3,10 @@ import {toMarkup} from "../../util/dom-util";
 import {formatTime} from "../../util/util";
 import RepeatingDay from "./repeating-day";
 import TaskColor from "./task-color";
-import Abstract from "../abstract";
+// import Abstract from "../abstract";
+import AbstractSmart from "../abstract-smart-component";
 
-export default class TaskEdit extends Abstract {
+export default class TaskEdit extends AbstractSmart {
   constructor(task) {
     super();
     this._task = task;
@@ -14,6 +15,11 @@ export default class TaskEdit extends Abstract {
     this._isDateShowing = !!task.dueDate;
     this._repeatingDays = task.repeatingDays;
     this._isRepeatingTask = Object.values(task.repeatingDays).some(Boolean);
+    this._activeRepeatingDays = Object.assign({}, task.repeatingDays);
+    // console.log(this._activeRepeatingDays);
+    this._submitHandler = null;
+
+    this._subscribeOnEvents();
   }
 
   _toggleYesNo(element) {
@@ -124,9 +130,57 @@ export default class TaskEdit extends Abstract {
       </article>`
     );
   }
+  recoveryListeners() {
+    this.setSubmitHandler(this._submitHandler);
+    this._subscribeOnEvents();
+  }
+
+  rerender() {
+    super.rerender();
+  }
+
+  reset() {
+    const task = this._task;
+
+    this._isDateShowing = !!task.dueDate;
+    this._isRepeatingTask = task.repeatingDays;
+    this._activeRepeatingDays = Object.assign({}, task.repeatingDays);
+
+    this.rerender();
+  }
 
   setSubmitHandler(handler) {
     this.getElement().querySelector(`form`)
       .addEventListener(`submit`, handler);
+
+    this._submitHandler = handler;
+  }
+
+  _subscribeOnEvents() {
+    const element = this.getElement();
+
+    element.querySelector(`.card__date-deadline-toggle`)
+      .addEventListener(`click`, () => {
+        this._isDateShowing = !this._isDateShowing;
+
+        this.rerender();
+      });
+
+    element.querySelector(`.card__repeat-toggle`)
+      .addEventListener(`click`, () => {
+        this._isRepeatingTask = !this._isRepeatingTask;
+
+        this.rerender();
+      });
+
+    const repeatDays = element.querySelector(`.card__repeat-days`);
+    if (repeatDays) {
+      repeatDays.addEventListener(`change`, (evt) => {
+        // console.log(evt.target.checked);
+        this._activeRepeatingDays[evt.target.value] = evt.target.checked;
+
+        // this.rerender();
+      });
+    }
   }
 }

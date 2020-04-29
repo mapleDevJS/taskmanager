@@ -1,7 +1,7 @@
 import Board from "./components/board/board";
+import BoardController from "./controllers/board";
 import Filter from "./components/filter/filter";
 import SiteMenu from "./components/menu/site-menu";
-import BoardController from "./controllers/board";
 import {QuantityTasks} from "./util/consts";
 import {generateTasks} from "./mocks/tasks";
 import {render} from "./util/dom-util";
@@ -58,9 +58,10 @@ const tasks = generateTasks(QuantityTasks.TOTAL);
 const filters = generateFilters(tasks);
 
 render(siteHeaderElement, new SiteMenu());
-render(siteMainElement, new Filter(filters, tasks));
+render(siteMainElement, new Filter(filters));
 
 const boardComponent = new Board();
 const boardController = new BoardController(boardComponent);
+
 render(siteMainElement, boardComponent);
 boardController.render(tasks);
