@@ -1,5 +1,5 @@
 `use strict`;
-
+const MomentLocalesPlugin = require(`moment-locales-webpack-plugin`);
 const path = require(`path`);
 
 module.exports = {
@@ -18,5 +18,17 @@ module.exports = {
       aggregateTimeout: 100,
       ignored: /node_modules/
     }
-  }
+  },
+
+  module: {
+    rules: [
+        {
+            test: /\.css$/i,
+            use: ['style-loader', 'css-loader']
+        }
+    ]
+  },
+  plugins: [
+    new MomentLocalesPlugin()
+  ]
 }
