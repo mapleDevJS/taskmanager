@@ -1,10 +1,13 @@
-import {COLORS, DAYS, MONTH_NAMES} from "../../util/consts";
+import {COLORS, DAYS} from "../../util/consts";
 import {toMarkup} from "../../util/dom-util";
-import {formatTime} from "../../util/util";
+import {formatTime, formatDate} from "../../util/util";
 import RepeatingDay from "./repeating-day";
 import TaskColor from "./task-color";
 // import Abstract from "../abstract";
 import AbstractSmart from "../abstract-smart-component";
+import flatpickr from "flatpickr";
+
+import "flatpickr/dist/flatpickr.min.css";
 
 export default class TaskEdit extends AbstractSmart {
   constructor(task) {
@@ -16,9 +19,11 @@ export default class TaskEdit extends AbstractSmart {
     this._repeatingDays = task.repeatingDays;
     this._isRepeatingTask = Object.values(task.repeatingDays).some(Boolean);
     this._activeRepeatingDays = Object.assign({}, task.repeatingDays);
-    // console.log(this._activeRepeatingDays);
+    this._flatpickr = null;
+
     this._submitHandler = null;
 
+    this._applyFlatpickr();
     this._subscribeOnEvents();
   }
 
@@ -67,7 +72,7 @@ export default class TaskEdit extends AbstractSmart {
   }
 
   _getDate() {
-    return this._isDateShowing ? `${this._task.dueDate.getDate()} ${MONTH_NAMES[this._task.dueDate.getMonth()]}` : ``;
+    return this._isDateShowing ? formatDate(this._task.dueDate) : ``;
   }
 
   _getTime() {
@@ -137,6 +142,8 @@ export default class TaskEdit extends AbstractSmart {
 
   rerender() {
     super.rerender();
+
+    this._applyFlatpickr();
   }
 
   reset() {
@@ -147,6 +154,22 @@ export default class TaskEdit extends AbstractSmart {
     this._activeRepeatingDays = Object.assign({}, task.repeatingDays);
 
     this.rerender();
+  }
+
+  _applyFlatpickr() {
+    if (this._flatpickr) {
+      this._flatpickr.destroy();
+      this._flatpickr = null;
+    }
+
+    if (this._isDateShowing) {
+      const dateElement = this.getElement().querySelector(`.card__date`);
+      this._flatpickr = flatpickr(dateElement, {
+        altInput: true,
+        allowInput: true,
+        defaultDate: this._task.dueDate || `today`,
+      });
+    }
   }
 
   setSubmitHandler(handler) {

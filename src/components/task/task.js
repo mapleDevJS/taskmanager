@@ -1,5 +1,4 @@
-import {MONTH_NAMES} from "../../util/consts";
-import {formatTime} from "../../util/util";
+import {formatTime, formatDate} from "../../util/util";
 import Abstract from "../abstract";
 
 export default class Task extends Abstract {
@@ -12,7 +11,7 @@ export default class Task extends Abstract {
     this._repeatingDays = task.repeatingDays;
   }
   _getDate() {
-    return this._isDateShowing ? `${this._task.dueDate.getDate()} ${MONTH_NAMES[this._task.dueDate.getMonth()]}` : ``;
+    return this._isDateShowing ? formatDate(this._task.dueDate) : ``;
   }
 
   _getTime() {
