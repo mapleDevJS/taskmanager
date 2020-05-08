@@ -21,6 +21,7 @@ const generateTask = () => {
   const dueDate = getRandomBoolean() ? null : getRandomDate();
 
   return {
+    id: String(new Date() + Math.random()),
     description: getRandomItem(TASK_DESCRIPTIONS),
     dueDate,
     repeatingDays: getRandomRepeating(dueDate),
