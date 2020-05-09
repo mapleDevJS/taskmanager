@@ -1,13 +1,14 @@
 
 import Abstract from "../abstract";
 import {formatTime, formatDate, isOverdueDate} from "../../util/util";
+import {encode} from "he";
 
 export default class Task extends Abstract {
   constructor(task) {
     super();
     this._task = task;
     this._color = task.color;
-    this._description = task.description;
+    this._description = encode(task.description);
     this._isDateShowing = !!task.dueDate;
     this._repeatingDays = task.repeatingDays;
   }
