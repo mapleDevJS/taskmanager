@@ -1,5 +1,6 @@
-import {formatTime, formatDate} from "../../util/util";
+
 import Abstract from "../abstract";
+import {formatTime, formatDate, isOverdueDate} from "../../util/util";
 
 export default class Task extends Abstract {
   constructor(task) {
@@ -19,7 +20,7 @@ export default class Task extends Abstract {
   }
 
   _getDeadlineClass() {
-    return this._task.dueDate instanceof Date && this._task.dueDate < Date.now() ? `card--deadline` : ``;
+    return this._dueDate instanceof Date && isOverdueDate(this._dueDate, new Date()) ? `card--deadline` : ``;
   }
 
   _getRepeatClass() {
