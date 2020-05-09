@@ -1,4 +1,4 @@
-import FilterComponent from "../components/filter";
+import FilterComponent from "../components/filter/filter";
 import {FilterType} from "../util/consts";
 
 import {render, replace, RenderPosition} from "../utils/dom-util";
@@ -41,7 +41,6 @@ export default class FilterController {
   }
 
   _onFilterChange(filterType) {
-    this._tasksModel.setFilter(filterType);
     this._activeFilterType = filterType;
   }
 
