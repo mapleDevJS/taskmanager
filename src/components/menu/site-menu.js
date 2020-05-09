@@ -27,7 +27,7 @@ export default class SiteMenu extends Abstract {
   }
 
   _getMenuMarkup() {
-    return [Object.entries(MenuItem)]
+    return [...MENU_ITEMS.entries()]
       .map(([value, key]) => this._getMenuItem(value, key))
       .join(`\n`);
   }
