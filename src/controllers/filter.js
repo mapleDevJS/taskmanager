@@ -1,7 +1,7 @@
 import FilterComponent from "../components/filter/filter";
 import {FilterType} from "../util/consts";
 
-import {render, replace, RenderPosition} from "../util/dom-util";
+import {render, replace} from "../util/dom-util";
 import {getTasksByFilter} from "../util/filter";
 
 export default class FilterController {
