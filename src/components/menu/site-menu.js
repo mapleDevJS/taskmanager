@@ -5,6 +5,13 @@ const MENU_ITEMS = new Map([
   [`task`, `TASKS`],
   [`statistic`, `STATISTICS`]
 ]);
+
+export const MenuItem = {
+  NEW_TASK: `control__new-task`,
+  STATISTICS: `control__statistic`,
+  TASKS: `control__task`,
+};
+
 export default class SiteMenu extends Abstract {
   _getMenuItem(key, value) {
     return (`
@@ -20,7 +27,7 @@ export default class SiteMenu extends Abstract {
   }
 
   _getMenuMarkup() {
-    return [...MENU_ITEMS.entries()]
+    return [Object.entries(MenuItem)]
       .map(([value, key]) => this._getMenuItem(value, key))
       .join(`\n`);
   }
@@ -31,5 +38,25 @@ export default class SiteMenu extends Abstract {
         ${this._getMenuMarkup()}
       </section>`
     );
+  }
+
+  setActiveItem(menuItem) {
+    const item = this.getElement().querySelector(`#${menuItem}`);
+
+    if (item) {
+      item.checked = true;
+    }
+  }
+
+  setOnChange(handler) {
+    this.getElement().addEventListener(`change`, (evt) => {
+      if (evt.target.tagName !== `INPUT`) {
+        return;
+      }
+
+      const menuItem = evt.target.id;
+
+      handler(menuItem);
+    });
   }
 }

@@ -46,6 +46,7 @@ export default class BoardController {
     this._sortComponent = new Sort();
     this._tasksComponent = new Tasks();
     this._loadMoreButtonComponent = new LoadMoreButton();
+    this._creatingTask = null;
 
     this._onDataChange = this._onDataChange.bind(this);
     this._onSortTypeChange = this._onSortTypeChange.bind(this);
@@ -73,6 +74,16 @@ export default class BoardController {
     this._renderTasks(tasks.slice(0, this._showingTasksCount));
 
     this._renderLoadMoreButton();
+  }
+
+  createTask() {
+    if (this._creatingTask) {
+      return;
+    }
+
+    const taskListElement = this._tasksComponent.getElement();
+    this._creatingTask = new TaskController(taskListElement, this._onDataChange, this._onViewChange);
+    this._creatingTask.render(EmptyTask, TaskControllerMode.ADDING);
   }
 
   _removeTasks() {
