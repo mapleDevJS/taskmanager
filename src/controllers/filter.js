@@ -1,7 +1,7 @@
 import FilterComponent from "../components/filter/filter";
 import {FilterType} from "../util/consts";
 
-import {render, replace, RenderPosition} from "../utils/dom-util";
+import {render, replace, RenderPosition} from "../util/dom-util";
 import {getTasksByFilter} from "../util/filter";
 
 export default class FilterController {
@@ -20,7 +20,7 @@ export default class FilterController {
 
   render() {
     const container = this._container;
-    const allTasks = this._tasksModel.getTasks();
+    const allTasks = this._tasksModel.getTasksAll();
     const filters = Object.values(FilterType).map((filterType) => {
       return {
         name: filterType,
@@ -41,6 +41,7 @@ export default class FilterController {
   }
 
   _onFilterChange(filterType) {
+    this._tasksModel.setFilter(filterType);
     this._activeFilterType = filterType;
   }
 
