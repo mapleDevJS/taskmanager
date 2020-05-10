@@ -152,6 +152,7 @@ export default class TaskEdit extends AbstractSmart {
     this._isDateShowing = !!task.dueDate;
     this._isRepeatingTask = Object.values(task.repeatingDays).some(Boolean);
     this._activeRepeatingDays = Object.assign({}, task.repeatingDays);
+    this._color = task.color;
     this._currentDescription = task.description;
     this._flatpickr = null;
     this._submitHandler = null;
@@ -273,5 +274,12 @@ export default class TaskEdit extends AbstractSmart {
         this.rerender();
       });
     }
+
+    const color = element.querySelector(`.card__colors-inner`);
+    color.addEventListener(`change`, (evt) => {
+      this._color[evt.target.value] = evt.target.checked;
+
+      this.rerender();
+    });
   }
 }

@@ -20,7 +20,7 @@ export default class TaskColor extends Abstract {
         ${this._currentColor === this._color ? `checked` : ``}
         />
       <label
-        for="color-${this._color}--${this._index}"
+        for="color-${this._color}-${this._index}"
         class="card__color card__color--${this._color}"
         >${this._color}</label
       >`
