@@ -1,7 +1,7 @@
 import Task from "../components/task/task";
 import TaskEdit from "../components/task/task-edit";
 import {render, replace, remove} from "../util/dom-util";
-import {COLORS} from "../util/consts";
+import {Color} from "../util/consts";
 
 export const Mode = {
   ADDING: `adding`,
@@ -21,7 +21,7 @@ export const EmptyTask = {
     "sa": false,
     "su": false,
   },
-  color: COLORS.BLACK,
+  color: Color.BLACK,
   isFavorite: false,
   isArchive: false,
 };

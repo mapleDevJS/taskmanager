@@ -10,16 +10,16 @@ export default class Tasks {
     this._filterChangeHandlers = [];
   }
 
-  getTasks() {
-    return getTasksByFilter(this._tasks, this._activeFilterType);
-  }
-
-  getTasksAll() {
+  get tasks() {
     return this._tasks;
   }
 
-  setTasks(tasks) {
-    this._tasks = Array.from(tasks);
+  getFilteredTasks() {
+    return getTasksByFilter(this._tasks, this._filter);
+  }
+
+  set tasks(tasks = []) {
+    this._tasks = tasks;
     this._callHandlers(this._dataChangeHandlers);
   }
 

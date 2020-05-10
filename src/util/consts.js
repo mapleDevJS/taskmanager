@@ -30,7 +30,7 @@ export const FilterType = {
 
 export const DAYS = [`mo`, `tu`, `we`, `th`, `fr`, `sa`, `su`];
 
-const color = {
+export const Color = {
   BLACK: `black`,
   YELLOW: `yellow`,
   BLUE: `blue`,
@@ -38,4 +38,4 @@ const color = {
   PINK: `pink`,
 };
 
-export const COLORS = Object.values(color);
+export const COLORS = Object.values(Color);

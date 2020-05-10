@@ -2,10 +2,6 @@ import Abstract from "../abstract";
 
 const FILTER_ID_PREFIX = `filter__`;
 
-const getFilterNameById = (id) => {
-  return id.substring(FILTER_ID_PREFIX.length);
-};
-
 export default class Filter extends Abstract {
   constructor(filters) {
     super();
@@ -13,8 +9,25 @@ export default class Filter extends Abstract {
     this._filters = filters;
   }
 
+  static getFilterNameById(id) {
+    return id.substring(FILTER_ID_PREFIX.length);
+  }
+
   getTemplate() {
-    return this._createFilterTemplate(this._filters);
+    const filtersMarkup = this._filters.map((it) => this._createFilterMarkup(it, it.checked)).join(`\n`);
+
+    return (
+      `<section class="main__filter filter container">
+        ${filtersMarkup}
+      </section>`
+    );
+  }
+
+  setFilterChangeHandler(handler) {
+    this.getElement().addEventListener(`change`, (evt) => {
+      const filterName = Filter.getFilterNameById(evt.target.id);
+      handler(filterName);
+    });
   }
 
   _createFilterMarkup(filter, isChecked) {
@@ -32,20 +45,5 @@ export default class Filter extends Abstract {
         ${name} <span class="filter__${name}-count">${count}</span></label
       >`
     );
-  }
-
-  _createFilterTemplate(filters) {
-    const filtersMarkup = filters.map((it) => this._createFilterMarkup(it, it.checked)).join(`\n`);
-
-    return `<section class="main__filter filter container">
-      ${filtersMarkup}
-    </section>`;
-  }
-
-  setFilterChangeHandler(handler) {
-    this.getElement().addEventListener(`change`, (evt) => {
-      const filterName = getFilterNameById(evt.target.id);
-      handler(filterName);
-    });
   }
 }
