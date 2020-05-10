@@ -277,7 +277,7 @@ export default class TaskEdit extends AbstractSmart {
 
     const color = element.querySelector(`.card__colors-inner`);
     color.addEventListener(`change`, (evt) => {
-      this._color[evt.target.value] = evt.target.checked;
+      this._task.color = evt.target.value;
 
       this.rerender();
     });
