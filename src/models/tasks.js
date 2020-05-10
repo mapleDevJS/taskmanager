@@ -14,8 +14,8 @@ export default class Tasks {
     return this._tasks;
   }
 
-  getFilteredTasks() {
-    return getTasksByFilter(this._tasks, this._filter);
+  get filteredTasks() {
+    return getTasksByFilter(this._tasks, this._activeFilterType);
   }
 
   set tasks(tasks = []) {
