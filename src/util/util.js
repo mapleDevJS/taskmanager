@@ -1,17 +1,17 @@
 import moment from "moment";
 
-const getRandomBoolean = () => Math.random() > 0.5;
-const getRandomSign = () => getRandomBoolean() ? 1 : -1;
+export const getRandomBoolean = () => Math.random() > 0.5;
+export const getRandomSign = () => getRandomBoolean() ? 1 : -1;
 
-const getRandomIntegerNumber = (max) => {
+export const getRandomIntegerNumber = (max) => {
   return Math.floor(Math.random() * max);
 };
 
-const getRandomItem = (array) => {
+export const getRandomItem = (array) => {
   return array[Math.floor(Math.random() * array.length)];
 };
 
-const getRandomDate = () => {
+export const getRandomDate = () => {
   const targetDate = new Date();
   const delta = getRandomSign() * getRandomIntegerNumber(8);
 
@@ -21,12 +21,24 @@ const getRandomDate = () => {
 };
 
 
-const formatTime = (date) => {
+export const formatTime = (date) => {
   return moment(date).format(`hh:mm`);
 };
 
-const formatDate = (date) => {
+export const formatDate = (date) => {
   return moment(date).format(`DD MMMM`);
 };
 
-export {getRandomBoolean, getRandomItem, getRandomDate, formatTime, formatDate};
+export const isRepeating = (repeatingDays) => {
+  return Object.values(repeatingDays).some(Boolean);
+};
+
+export const isOverdueDate = (dueDate, date) => {
+  return dueDate < date && !isOneDay(date, dueDate);
+};
+
+export const isOneDay = (dateA, dateB) => {
+  const a = moment(dateA);
+  const b = moment(dateB);
+  return a.diff(b, `days`) === 0 && dateA.getDate() === dateB.getDate();
+};
