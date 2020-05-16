@@ -230,7 +230,7 @@ export default class Statistics extends AbstractSmart {
   }
 
   getTemplate() {
-    return createStatisticsTemplate({tasks: this._tasks.getTasks(), dateFrom: this._dateFrom, dateTo: this._dateTo});
+    return createStatisticsTemplate({tasks: this._tasks.tasks, dateFrom: this._dateFrom, dateTo: this._dateTo});
   }
 
   show() {
@@ -261,8 +261,8 @@ export default class Statistics extends AbstractSmart {
 
     this._resetCharts();
 
-    this._daysChart = renderDaysChart(daysCtx, this._tasks.getTasks(), this._dateFrom, this._dateTo);
-    this._colorsChart = renderColorsChart(colorsCtx, this._tasks.getTasks());
+    this._daysChart = renderDaysChart(daysCtx, this._tasks.tasks, this._dateFrom, this._dateTo);
+    this._colorsChart = renderColorsChart(colorsCtx, this._tasks.tasks);
   }
 
   _resetCharts() {
