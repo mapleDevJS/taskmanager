@@ -68,7 +68,7 @@ export default class BoardController {
 
   render() {
     const container = this._container.getElement();
-    const tasks = this._tasksModel.filteredTasks;
+    const tasks = this._tasksModel.getFilteredTasks();
     const isAllTasksArchived = tasks.every((task) => task.isArchive);
 
     if (isAllTasksArchived) {
@@ -111,7 +111,7 @@ export default class BoardController {
   _renderLoadMoreButton() {
     remove(this._loadMoreButtonComponent);
 
-    if (this._showingTasksCount >= this._tasksModel.filteredTasks.length) {
+    if (this._showingTasksCount >= this._tasksModel.getFilteredTasks().length) {
       return;
     }
 
@@ -123,7 +123,7 @@ export default class BoardController {
 
   _updateTasks(count) {
     this._removeTasks();
-    this._renderTasks(this._tasksModel.filteredTasks.slice(0, count));
+    this._renderTasks(this._tasksModel.getFilteredTasks().slice(0, count));
     this._renderLoadMoreButton();
   }
 
@@ -167,7 +167,7 @@ export default class BoardController {
   _onSortTypeChange(sortType) {
     this._showingTasksCount = QuantityTasks.ON_START;
 
-    const sortedTasks = getSortedTasks(this._tasksModel.filteredTasks, sortType, 0, this._showingTasksCount);
+    const sortedTasks = getSortedTasks(this._tasksModel.getFilteredTasks(), sortType, 0, this._showingTasksCount);
 
     this._removeTasks();
     this._renderTasks(sortedTasks);
@@ -177,7 +177,7 @@ export default class BoardController {
 
   _onLoadMoreButtonClick() {
     const prevTasksCount = this._showingTasksCount;
-    const tasks = this._tasksModel.filteredTasks;
+    const tasks = this._tasksModel.getFilteredTasks();
 
     this._showingTasksCount = this._showingTasksCount + QuantityTasks.BY_BUTTON;
 

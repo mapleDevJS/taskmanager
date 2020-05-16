@@ -14,13 +14,13 @@ export default class Tasks {
     return this._tasks;
   }
 
-  get filteredTasks() {
-    return getTasksByFilter(this._tasks, this._activeFilterType);
-  }
-
   set tasks(tasks = []) {
     this._tasks = tasks;
     this._callHandlers(this._dataChangeHandlers);
+  }
+
+  getFilteredTasks() {
+    return getTasksByFilter(this._tasks, this._activeFilterType);
   }
 
   setFilter(filterType) {
