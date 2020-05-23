@@ -1,10 +1,10 @@
+import API from "./api.js";
 import Board from "./components/board/board";
 import BoardController from "./controllers/board";
 import FilterController from "./controllers/filter";
 import SiteMenu, {MenuItem} from "./components/menu/site-menu";
 import Statistics from "./components/statistics";
 import TasksModel from "./models/tasks";
-import {generateTasks} from "./mocks/tasks";
 import {render} from "./util/dom-util";
 import {QuantityTasks} from "./util/consts";
 
@@ -15,10 +15,8 @@ const dateFrom = (() => {
   return d;
 })();
 
-const tasks = generateTasks(QuantityTasks.TOTAL);
+const api = new API();
 const tasksModel = new TasksModel();
-
-tasksModel.tasks = tasks;
 
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
@@ -33,7 +31,6 @@ render(siteHeaderElement, siteMenuComponent);
 filterController.render();
 
 render(siteMainElement, boardComponent);
-boardController.render();
 
 render(siteMainElement, statisticsComponent);
 statisticsComponent.hide();
@@ -56,3 +53,9 @@ siteMenuComponent.setOnChange((menuItem) => {
       break;
   }
 });
+
+api.getTasks()
+  .then((tasks) => {
+    tasksModel.tasks = tasks;
+    boardController.render();
+  });
