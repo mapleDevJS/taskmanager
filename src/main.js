@@ -6,7 +6,8 @@ import SiteMenu, {MenuItem} from "./components/menu/site-menu";
 import Statistics from "./components/statistics";
 import TasksModel from "./models/tasks";
 import {render} from "./util/dom-util";
-import {QuantityTasks} from "./util/consts";
+
+const AUTHORIZATION = `Basic dXNlckBwYXNzd29yZAo=`;
 
 const dateTo = new Date();
 const dateFrom = (() => {
@@ -15,7 +16,7 @@ const dateFrom = (() => {
   return d;
 })();
 
-const api = new API();
+const api = new API(AUTHORIZATION);
 const tasksModel = new TasksModel();
 
 const siteMainElement = document.querySelector(`.main`);
