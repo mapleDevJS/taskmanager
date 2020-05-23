@@ -7,7 +7,7 @@ import Statistics from "./components/statistics";
 import TasksModel from "./models/tasks";
 import {render} from "./util/dom-util";
 
-const AUTHORIZATION = `Basic dXNlckBwYXNzd29yZAo=`;
+const AUTHORIZATION = `Basic sbdkfb47q6yY47FGJSDJFi7834y@@<`;
 
 const dateTo = new Date();
 const dateFrom = (() => {
