@@ -25,7 +25,7 @@ const siteMenuComponent = new SiteMenu();
 const statisticsComponent = new Statistics({tasks: tasksModel, dateFrom, dateTo});
 
 const boardComponent = new Board();
-const boardController = new BoardController(boardComponent, tasksModel);
+const boardController = new BoardController(boardComponent, tasksModel, api);
 const filterController = new FilterController(siteMainElement, tasksModel);
 
 render(siteHeaderElement, siteMenuComponent);
