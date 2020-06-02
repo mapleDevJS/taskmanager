@@ -22,10 +22,6 @@ const API = class {
   }
 
   getTasks() {
-    // const headers = new Headers();
-    // headers.append(`Authorization`, this._authorization);
-
-    // return fetch(`https://11.ecmascript.pages.academy/task-manager/tasks`, {headers})
     return this._load({url: `tasks`})
     .then(checkStatus)
     .then((response) => response.json())
@@ -48,19 +44,12 @@ const API = class {
   }
 
   updateTask(id, data) {
-    // const headers = new Headers();
-    // headers.append(`Authorization`, this._authorization);
-    // headers.append(`Content-Type`, `application/json`);
-
-    // return fetch(`https://11.ecmascript.pages.academy/task-manager/tasks/${id}`, {
-    //   method: `PUT`,
     return this._load({
       url: `tasks/${id}`,
       method: Method.PUT,
       body: JSON.stringify(data.toRAW()),
       headers: new Headers({"Content-Type": `application/json`})
     })
-      // .then(checkStatus)
       .then((response) => response.json())
       .then(Task.parseTask);
   }
