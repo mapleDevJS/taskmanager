@@ -43,6 +43,10 @@ const API = class {
       .then(Task.parseTask);
   }
 
+  deleteTask(id) {
+    return this._load({url: `tasks/${id}`, method: Method.DELETE});
+  }
+
   updateTask(id, data) {
     // const headers = new Headers();
     // headers.append(`Authorization`, this._authorization);
