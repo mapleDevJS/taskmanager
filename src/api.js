@@ -32,6 +32,17 @@ const API = class {
     .then(Task.parseTasks);
   }
 
+  createTask(task) {
+    return this._load({
+      url: `tasks`,
+      method: Method.POST,
+      body: JSON.stringify(task.toRAW()),
+      headers: new Headers({"Content-Type": `application/json`})
+    })
+      .then((response) => response.json())
+      .then(Task.parseTask);
+  }
+
   updateTask(id, data) {
     // const headers = new Headers();
     // headers.append(`Authorization`, this._authorization);
