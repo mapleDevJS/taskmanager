@@ -1,8 +1,8 @@
 {
   "name": "taskmanager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
-  "description": "Учебный проект «Менеджер задач» от HTML Academy",
+  "description": "Task Manager",
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server --open",
@@ -10,23 +10,23 @@
     "test": "npm run eslint"
   },
   "devDependencies": {
-    "css-loader": "^3.5.3",
+    "css-loader": "3.5.3",
     "eslint": "6.1.0",
     "eslint-config-htmlacademy": "0.5.2",
-    "moment-locales-webpack-plugin": "^1.2.0",
-    "style-loader": "^1.2.1",
+    "moment-locales-webpack-plugin": "1.2.0",
+    "style-loader": "1.2.1",
     "webpack": "4.42.1",
     "webpack-cli": "3.3.11",
-    "webpack-dev-server": "3.10.3"
+    "webpack-dev-server": "^3.11.2"
   },
   "engines": {
-    "node": "10"
+    "node": "14.x"
   },
   "dependencies": {
-    "chart.js": "^2.9.3",
-    "chartjs-plugin-datalabels": "^0.7.0",
-    "flatpickr": "^4.6.3",
-    "he": "^1.2.0",
-    "moment": "^2.25.3"
+    "chart.js": "2.9.3",
+    "chartjs-plugin-datalabels": "0.7.0",
+    "flatpickr": "4.6.3",
+    "he": "1.2.0",
+    "moment": "2.25.3"
   }
 }
